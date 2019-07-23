@@ -45,6 +45,7 @@
     <Compile Include="Components\Animation\Storyboard.cs" />
     <Compile Include="Components\Animation\Timeline.cs" />
     <Compile Include="Components\Animation\TimelineBeginArgs.cs" />
+    <Compile Include="Components\Animation\TimelineTickArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

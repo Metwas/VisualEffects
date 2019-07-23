@@ -16,10 +16,17 @@ namespace VisualEffects.Components.Animation
 	/// </summary>
 	/// <param name="sender"></param>
 	/// <param name="args"></param>
-	public delegate void TimelineBeginHandler(object sender, EventArgs args);
+	public delegate void TimelineBeginHandler(object sender, TimelineBeginArgs args);
 
 	/// <summary>
-	/// USed to control and display an underlying <see cref="Timer"/>
+	/// Used to handle each elapsed timer update
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="args"></param>
+	public delegate void TimelineTickHandler(object sender, TimelineTickArgs args);
+
+	/// <summary>
+	/// Used to control and display an underlying <see cref="Timer"/>
 	/// </summary>
 	public class Timeline
 	{
@@ -42,12 +49,17 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// Used to handle timeline timer completion phase
 		/// </summary>
-		public event TimelineCompleteHandler  TimelineComplete = null;
+		public event TimelineCompleteHandler TimelineComplete = null;
 
 		/// <summary>
 		/// Used to handle timeline timer completion phase
 		/// </summary>
 		public event TimelineBeginHandler TimelineBegin = null;
+
+		/// <summary>
+		/// Used to handle every internal timer tick completion phase
+		/// </summary>
+		public event TimelineTickHandler TimelineTick = null;
 
 		/// <summary>
 		/// Base timer used to update a given object or value over an elapsed interval
@@ -60,9 +72,25 @@ namespace VisualEffects.Components.Animation
 		private Stopwatch _stopwatch = null;
 
 		/// <summary>
+		/// Keeps a reference for the current timeline position
+		/// </summary>
+		private double _currentTimeElapsed = 0;
+
+		/// <summary>
 		/// The desired framerate for the animation
 		/// </summary>
 		private int _desiredFrameRate = 30;
+
+		/// <summary>
+		/// Keeps a record of the internal timer whether its currently enabled (if true, the elapsed event will continue to be raised)
+		/// </summary>
+		public bool IsRunning
+		{
+			get
+			{
+				return this._animationTimer.Enabled;
+			}
+		};
 
 		/// <summary>
 		/// The desired framerate for the animation
@@ -90,15 +118,91 @@ namespace VisualEffects.Components.Animation
 		#region Functions
 
 		/// <summary>
+		/// Initializes the current elapsed time to the beginning
+		/// </summary>
+		public void Begin()
+		{
+			// start from the beginning
+			this.BeginAt(0);
+		}
+
+		/// <summary>
+		/// Initializes the current elapsed time to the provided startTime parameter
+		/// </summary>
+		/// <param name="time">The desired starting position</param>
+		public void BeginAt(double startTime)
+		{
+			_currentTimeElapsed = startTime;
+			this._animationTimer.Start();
+			this._stopwatch = Stopwatch.StartNew();
+			this.OnTimelineBegin(new TimelineBeginArgs(this.DesiredFrameRate, this.Duration));
+		}
+
+		/// <summary>
+		/// Terminates the timer and completes the animation
+		/// </summary>
+		public void End()
+		{
+			if (this.IsRunning)
+			{
+				this._animationTimer.Stop();
+				this.OnTimelineComplete(null);
+			}
+		}
+
+		/// <summary>
+		/// The recommended design principle for safely executing subscribed event handlers for the <see cref="Timeline.TimelineTick"/> event
+		/// </summary>
+		/// <param name="args"><see cref="TimelineTickArgs"/></param>
+		protected virtual void OnTimelineTick(TimelineTickArgs args)
+		{
+			// ensure there are subscribed event handlers for this event
+			if (this.TimelineTick != null)
+			{
+				this.TimelineTick(this, args);
+			}
+		}
+
+		/// <summary>
+		/// The recommended design principle for safely executing subscribed event handlers for the <see cref="Timeline.TimelineBegin"/> event
+		/// </summary>
+		/// <param name="args"><see cref="TimelineTickArgs"/></param>
+		protected virtual void OnTimelineBegin(TimelineBeginArgs args)
+		{
+			// ensure there are subscribed event handlers for this event
+			if (this.TimelineBegin != null)
+			{
+				this.TimelineBegin(this, args);
+			}
+		}
+
+		/// <summary>
+		/// The recommended design principle for safely executing subscribed event handlers for the <see cref="Timeline.TimelineComplete"/> event
+		/// </summary>
+		/// <param name="args"><see cref="TimelineTickArgs"/></param>
+		protected virtual void OnTimelineComplete(EventArgs args)
+		{
+			// ensure there are subscribed event handlers for this event
+			if (this.TimelineComplete != null)
+			{
+				this.TimelineComplete(this, args);
+			}
+		}
+
+		#endregion
+
+		#region Event Handlers
+
+
+		/// <summary>
 		/// Handles each elapsed timer event, updating the base animation value
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		protected void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)
 		{
-
+			this.OnTimelineTick(new TimelineTickArgs(this._stopwatch.Elapsed.TotalMilliseconds));
 		}
-
 
 		#endregion
 
