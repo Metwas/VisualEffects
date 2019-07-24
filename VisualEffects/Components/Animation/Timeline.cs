@@ -36,11 +36,26 @@ namespace VisualEffects.Components.Animation
 		/// Constructs an timeline object with the specified framerate and complete duration
 		/// </summary>
 		/// <param name="frameRate">The internal timer elapsed delay</param>
-		/// <param name="duration">The total duration to complete this timeline</param>
+		/// <param name="duration">The total duration to complete this timeline in milliseconds</param>
 		public Timeline(uint? frameRate, double duration)
 		{
+			this.Duration = TimeSpan.FromMilliseconds(duration);
 			this.DesiredFrameRate = frameRate.HasValue ? frameRate.Value : Timeline.DefaultFrameRate;
-			this._animationTimer = new Timer(this.DesiredFrameRate);
+			this._animationTimer = new Timer(1000 / this.DesiredFrameRate);
+			this._stopwatch = new Stopwatch();
+			this._animationTimer.Elapsed += this.AnimationTimer_Elapsed;
+		}
+
+		/// <summary>
+		/// Constructs an timeline object with the specified framerate and complete duration
+		/// </summary>
+		/// <param name="frameRate">The internal timer elapsed delay</param>
+		/// <param name="duration">The total duration to complete this timeline as a <see cref="TimeSpan"/></param>
+		public Timeline(uint? frameRate, TimeSpan duration)
+		{
+			this.Duration = duration;
+			this.DesiredFrameRate = frameRate.HasValue ? frameRate.Value : Timeline.DefaultFrameRate;
+			this._animationTimer = new Timer(1000 / this.DesiredFrameRate);
 			this._stopwatch = new Stopwatch();
 			this._animationTimer.Elapsed += this.AnimationTimer_Elapsed;
 		}
@@ -119,7 +134,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// The duration for this animation before completion
 		/// </summary>
-		public double Duration { get; }
+		public TimeSpan Duration { get; }
 
 		#region Functions
 
@@ -138,10 +153,11 @@ namespace VisualEffects.Components.Animation
 		/// <param name="time">The desired starting position</param>
 		public void BeginAt(double startTime)
 		{
+			this.End();
 			_currentTimeElapsed = startTime;
 			this._animationTimer.Start();
 			this._stopwatch = Stopwatch.StartNew();
-			this.OnTimelineBegin(new TimelineBeginArgs(this.DesiredFrameRate, this.Duration, this._currentTimeElapsed));
+			this.OnTimelineBegin(new TimelineBeginArgs(this.DesiredFrameRate, this.Duration.TotalMilliseconds, this._currentTimeElapsed));
 		}
 
 		/// <summary>
@@ -152,6 +168,8 @@ namespace VisualEffects.Components.Animation
 			if (this.IsRunning)
 			{
 				this._animationTimer.Stop();
+				this._stopwatch.Stop();
+				this._stopwatch.Reset();
 				this.OnTimelineComplete(null);
 			}
 		}
@@ -209,7 +227,7 @@ namespace VisualEffects.Components.Animation
 		{
 			double totalElapsedTime = this._stopwatch.Elapsed.TotalMilliseconds + this._currentTimeElapsed;
 
-			if(totalElapsedTime >= this.Duration)
+			if (totalElapsedTime >= this.Duration.TotalMilliseconds)
 			{
 				// complete timeline
 				this.End();

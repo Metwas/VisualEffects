@@ -12,7 +12,7 @@
 		/// Constructs this struct with the from and to properties
 		/// </summary>
 		/// <param name="easingFunction">The easing algorithm</param>
-		/// <param name="duration">The total duration to complete this animation</param>
+		/// <param name="duration">The total duration to complete this animation in milliseconds</param>
 		public StructAnimationBase(T from, T to, EasingFunction easingFunction, double duration)
 			: this(from, to, easingFunction, duration, null)
 		{
@@ -33,7 +33,7 @@
 		{
 			this.From = from;
 			this.To = to;
-
+			this.Precision = 4;
 			// attach event listener to the Timeline.Tick 
 			this.TimelineTick += this.Timeline_Tick;
 		}
@@ -54,6 +54,11 @@
 		/// The current calculated positional based value of type <see cref="T"/>
 		/// </summary>
 		public T Current { get; protected set; }
+
+		/// <summary>
+		/// The precision value when rounding value types
+		/// </summary>
+		public int Precision { get; set; }
 
 		#region Event Handlers
 

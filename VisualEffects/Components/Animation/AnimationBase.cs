@@ -11,7 +11,7 @@
 		/// Constructs an animation object with the specified framerate
 		/// </summary>
 		/// <param name="easingFunction">The easing algorithm</param>
-		/// <param name="duration">The total duration to complete this animation</param>
+		/// <param name="duration">The total duration to complete this animation in milliseconds</param>
 		/// <param name="frameRate">The internal timer elapsed delay</param>
 		public AnimationBase(EasingFunction easingFunction, double duration, uint? frameRate)
 			: base(frameRate, duration)

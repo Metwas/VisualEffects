@@ -12,7 +12,7 @@
 		/// Constructs this struct with the from and to properties
 		/// </summary>
 		/// <param name="easingFunction">The easing algorithm</param>
-		/// <param name="duration">The total duration to complete this animation</param>
+		/// <param name="duration">The total duration to complete this animation in milliseconds</param>
 		public DoubleAnimation(double from, double to, EasingFunction easingFunction, double duration)
 			: this(from, to, easingFunction, duration, null)
 		{			
@@ -43,7 +43,7 @@
 		/// <param name="args"></param>
 		protected override void Timeline_Tick(object sender, TimelineTickArgs args)
 		{
-			this.Current = this.EasingFunction.Apply(args.CurrentTime, this.Duration);
+			this.Current = System.Math.Round((this.To.Value - this.From.Value) * this.EasingFunction.Apply(args.CurrentTime, this.Duration), this.Precision);
 		}
 
 		#endregion

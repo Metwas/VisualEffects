@@ -53,23 +53,34 @@ namespace VisualEffects.Components.Animation
 		/// The main function which performs the easing algorithm depending on which <see cref="EaseMode"/> is selected.
 		/// </summary>
 		/// <param name="elapsedTime">The current elapsedTime which gets passed to the easing formulae</param>
-		/// <param name="duration">The total time for an animation to complete</param>
+		/// <param name="duration">The total time for an animation to complete in milliseconds</param>
 		/// <returns>The current animation progress for a given type as a <see cref="double"/></returns>
 		public virtual double Apply(double elapsedTime, double duration)
 		{
-			elapsedTime = this.NormalizeTime(elapsedTime, duration);
+			double normalizedTime = this.NormalizeTime(elapsedTime, duration);
 
 			switch (this.Mode)
 			{
 				case EaseMode.IN:
-					return this.EaseInCore(elapsedTime, duration);
+					return this.EaseInCore(normalizedTime, duration);
 				case EaseMode.OUT:
-					return this.EaseInCore(-elapsedTime, duration);
+					return this.EaseInCore(-normalizedTime, duration);
 				case EaseMode.INOUT:
-					return this.PerformSwitchEase(elapsedTime, duration);
+					return this.PerformSwitchEase(normalizedTime, duration);
 				default:
-					return this.EaseInCore(elapsedTime, duration);
+					return this.EaseInCore(normalizedTime, duration);
 			}
+		}
+
+		/// <summary>
+		/// The main function which performs the easing algorithm depending on which <see cref="EaseMode"/> is selected.
+		/// </summary>
+		/// <param name="elapsedTime">The current elapsedTime which gets passed to the easing formulae</param>
+		/// <param name="duration">The total time for an animation to complete as a <see cref="TimeSpan"/></param>
+		/// <returns>The current animation progress for a given type as a <see cref="double"/></returns>
+		public virtual double Apply(double elapsedTime, TimeSpan duration)
+		{
+			return this.Apply(elapsedTime, duration.TotalMilliseconds);
 		}
 
 		/// <summary>
