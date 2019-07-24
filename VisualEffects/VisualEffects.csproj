@@ -40,18 +40,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Animation\AnimationBase.cs" />
+    <Compile Include="Components\Animation\EaseAlgorithms\LinearEaseFunction.cs" />
     <Compile Include="Components\Animation\EaseMode.cs" />
     <Compile Include="Components\Animation\EasingFunction.cs" />
     <Compile Include="Components\Animation\Storyboard.cs" />
+    <Compile Include="Components\Animation\StructAnimationBase.cs" />
     <Compile Include="Components\Animation\Timeline.cs" />
     <Compile Include="Components\Animation\TimelineBeginArgs.cs" />
     <Compile Include="Components\Animation\TimelineTickArgs.cs" />
+    <Compile Include="Helpers\Extensions\MathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\Animation\EaseFunctions\" />
     <Folder Include="Components\Effects\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

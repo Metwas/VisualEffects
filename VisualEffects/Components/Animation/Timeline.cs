@@ -35,8 +35,9 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// Constructs an timeline object with the specified framerate and complete duration
 		/// </summary>
-		/// <param name="frameRate"></param>
-		public Timeline(int frameRate, double duration)
+		/// <param name="frameRate">The internal timer elapsed delay</param>
+		/// <param name="duration">The total duration to complete this timeline</param>
+		public Timeline(uint frameRate, double duration)
 		{
 			this.DesiredFrameRate = frameRate;
 			this._animationTimer = new Timer(this.DesiredFrameRate);
@@ -79,7 +80,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// The desired framerate for the animation
 		/// </summary>
-		private int _desiredFrameRate = 30;
+		private uint _desiredFrameRate = 30;
 
 		/// <summary>
 		/// Keeps a record of the internal timer whether its currently enabled (if true, the elapsed event will continue to be raised)
@@ -95,7 +96,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// The desired framerate for the animation
 		/// </summary>
-		public int DesiredFrameRate
+		public uint DesiredFrameRate
 		{
 			get
 			{
