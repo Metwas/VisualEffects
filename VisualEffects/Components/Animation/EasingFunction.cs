@@ -115,7 +115,7 @@ namespace VisualEffects.Components.Animation
 		/// <returns>The normalized time as a <see cref="double"/></returns>
 		protected virtual double NormalizeTime(double elapsedTime, double duration)
 		{
-			return elapsedTime.Map(0, duration, 0, 1);
+			return elapsedTime.Map(0, duration, -1, 1);
 		}
 
 		/// <summary>
@@ -126,7 +126,7 @@ namespace VisualEffects.Components.Animation
 		/// <returns>The normalized time as a <see cref="double"/></returns>
 		protected virtual double NegativeNormalizeTime(double elapsedTime, double duration)
 		{
-			return elapsedTime.Map(0, duration, 1, 0);
+			return elapsedTime.Map(0, duration, 1, -1);
 		}
 
 		/// <summary>
@@ -146,7 +146,7 @@ namespace VisualEffects.Components.Animation
 		/// <returns>A <see cref="double"/> result</returns>
 		protected double EaseIn(double normalizedTime, double duration)
 		{
-			return this.EaseInCore(normalizedTime, duration) - (normalizedTime * (1 - normalizedTime));
+			return this.EaseInCore(normalizedTime, duration);
 		}
 
 		#endregion

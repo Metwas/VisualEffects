@@ -13,7 +13,7 @@ namespace VisualEffects.Test
 		public AnimationTesterWindow()
 		{
 			InitializeComponent();
-			this.doubleAnimation = new DoubleAnimation(0.0, 555.0, new LinearEaseFunction(EaseMode.EaseIn), 5000, 60);
+			this.doubleAnimation = new DoubleAnimation(0.0, 255.0, new LinearEaseFunction(EaseMode.EaseOut), 2200, 60);
 
 			this.doubleAnimation.TimelineComplete += (o, a) =>
 			{
