@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VisualEffects.Components.Animation;
 using VisualEffects.Helpers.Extensions;
@@ -14,10 +8,12 @@ namespace VisualEffects.Test
 {
 	public partial class AnimationTesterWindow : Form
 	{
+		#region Constructors
+
 		public AnimationTesterWindow()
 		{
 			InitializeComponent();
-			this.doubleAnimation = new DoubleAnimation(0.0, 155.0, EasingFunction.LinearEase, 5000, 30);
+			this.doubleAnimation = new DoubleAnimation(0.0, 155.0, new LinearEaseFunction(EaseMode.EaseIn), 500, 120);
 
 			this.doubleAnimation.TimelineComplete += (o, a) =>
 			{
@@ -49,13 +45,16 @@ namespace VisualEffects.Test
 
 					this.AnimationStatusLabel.Text = "Moving box to the right";
 					this.DoubleAnimateObject.Location = new Point((int)_currentValue, this.DoubleAnimateObject.Location.Y);
-					this.Opacity = _currentValue.Map(0, 155, 0, 1);
+					this.Opacity = _currentValue.Map(this.doubleAnimation.From.Value, this.doubleAnimation.To.Value, 0, 1);
+					this.Location = new Point(this.Location.X, (int)_currentValue);
 					this.DoubleValueLabel.Text = _currentValue.ToString();
 				});
 
 				this.BeginInvoke(_invoker);
 			};
 		}
+
+		#endregion
 
 		public DoubleAnimation doubleAnimation = null;
 

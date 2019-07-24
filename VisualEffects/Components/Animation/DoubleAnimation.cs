@@ -1,4 +1,6 @@
-﻿namespace VisualEffects.Components.Animation
+﻿using VisualEffects.Helpers.Extensions;
+
+namespace VisualEffects.Components.Animation
 {
 	/// <summary>
 	/// This uses a <see cref="System.Timers.Timer"/> to control the rate of change on a set of generic value types [<see cref="T"/>] represented as 'From' and 'To'
@@ -15,7 +17,7 @@
 		/// <param name="duration">The total duration to complete this animation in milliseconds</param>
 		public DoubleAnimation(double from, double to, EasingFunction easingFunction, double duration)
 			: this(from, to, easingFunction, duration, null)
-		{			
+		{
 		}
 
 		/// <summary>
@@ -33,7 +35,6 @@
 
 		#endregion
 
-
 		#region Event Handlers
 
 		/// <summary>
@@ -43,7 +44,7 @@
 		/// <param name="args"></param>
 		protected override void Timeline_Tick(object sender, TimelineTickArgs args)
 		{
-			this.Current = System.Math.Round((this.To.Value - this.From.Value) * this.EasingFunction.Apply(args.CurrentTime, this.Duration), this.Precision);
+			this.Current = System.Math.Round((this.To.Value - this.From.Value) * this.EasingFunction.Apply(args.CurrentTime, this.Duration), this.Precision).Clamp(this.From.Value, this.To.Value);
 		}
 
 		#endregion

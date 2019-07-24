@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace VisualEffects.Helpers.Extensions
 {
@@ -10,6 +7,8 @@ namespace VisualEffects.Helpers.Extensions
 	/// </summary>
 	public static class MathExtensions
 	{
+		#region Map
+
 		/// <summary>
 		/// Maps a range of values to a set of compressed or expanded equivalant values
 		/// </summary>
@@ -33,5 +32,47 @@ namespace VisualEffects.Helpers.Extensions
 		{
 			return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
 		}
+
+		#endregion
+
+		#region Clamps & filters
+
+		/// <summary>
+		/// Ensures the extended value falls within a specific limit
+		/// </summary>
+		/// <param name="value">The extended value</param>
+		/// <param name="maximum">The minimum value</param>
+		/// <param name="maximum">The maximum value</param>
+		/// <returns>A <see cref="decimal"/> value which will be less or equal to the <see cref="maximum"/> parameter</returns>
+		public static decimal Clamp(this decimal value, decimal minimum, decimal maximum)
+		{
+			return Math.Max(minimum, Math.Min(value, maximum));
+		}
+
+		/// <summary>
+		/// Ensures the extended value falls within a specific limit
+		/// </summary>
+		/// <param name="value">The extended value</param>
+		/// <param name="maximum">The minimum value</param>
+		/// <param name="maximum">The maximum value</param>
+		/// <returns>A <see cref="double"/> value which will be less or equal to the <see cref="maximum"/> parameter</returns>
+		public static double Clamp(this double value, double minimum, double maximum)
+		{
+			return Math.Max(minimum, Math.Min(value, maximum));
+		}
+
+		/// <summary>
+		/// Ensures the extended value falls within a specific limit
+		/// </summary>
+		/// <param name="value">The extended value</param>
+		/// <param name="maximum">The minimum value</param>
+		/// <param name="maximum">The maximum value</param>
+		/// <returns>A <see cref="int"/> value which will be less or equal to the <see cref="maximum"/> parameter</returns>
+		public static int Clamp(this int value, int minimum, int maximum)
+		{
+			return Math.Max(minimum, Math.Min(value, maximum));
+		}
+
+		#endregion
 	}
 }

@@ -24,7 +24,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// Linear ease algorithm
 		/// </summary>
-		public static EasingFunction LinearEase = new LinearEaseFunction(EaseMode.IN);
+		public static EasingFunction LinearEase = new LinearEaseFunction(EaseMode.EaseIn);
 
 		/// <summary>
 		/// Power ease algorithm
@@ -32,7 +32,7 @@ namespace VisualEffects.Components.Animation
 		/// <remarks>
 		/// https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.animation.powerease?view=netframework-4.8
 		/// </remarks>
-		public static EasingFunction PowerEase = new PowerEaseFunction(EaseMode.IN);
+		public static EasingFunction PowerEase = new PowerEaseFunction(EaseMode.EaseIn);
 
 		/// <summary>
 		/// Gets or sets the <see cref="EaseMode"/> interpolation modification type for this easing function
@@ -58,14 +58,15 @@ namespace VisualEffects.Components.Animation
 		public virtual double Apply(double elapsedTime, double duration)
 		{
 			double normalizedTime = this.NormalizeTime(elapsedTime, duration);
+			//double negativeNormalizedTime = this.NegativeNormalizeTime(elapsedTime, duration);
 
 			switch (this.Mode)
 			{
-				case EaseMode.IN:
+				case EaseMode.EaseIn:
 					return this.EaseInCore(normalizedTime, duration);
-				case EaseMode.OUT:
-					return this.EaseInCore(-normalizedTime, duration);
-				case EaseMode.INOUT:
+				case EaseMode.EaseOut:
+					return this.EaseInCore(normalizedTime, duration);
+				case EaseMode.EaseInOut:
 					return this.PerformSwitchEase(normalizedTime, duration);
 				default:
 					return this.EaseInCore(normalizedTime, duration);
@@ -84,7 +85,7 @@ namespace VisualEffects.Components.Animation
 		}
 
 		/// <summary>
-		/// Performs both <see cref="EaseMode.IN" /> and <see cref="EaseMode.OUT"/> at the specified switch timestamp
+		/// Performs both <see cref="EaseMode.EaseIn" /> and <see cref="EaseMode.EaseOut"/> at the specified switch timestamp
 		/// </summary>
 		/// <param name="elapsedTime">The current elapsedTime which gets passed to the easing formulae</param>
 		/// <param name="duration">The total time for an animation to complete</param>
@@ -119,6 +120,17 @@ namespace VisualEffects.Components.Animation
 		protected virtual double NormalizeTime(double elapsedTime, double duration)
 		{
 			return elapsedTime.Map(0, duration, 0, 1);
+		}
+
+		/// <summary>
+		/// Maps from 1 to 0 rather than the <see cref="NormalizeTime(double, double)"/> function which uses 0 to 1
+		/// </summary>
+		/// <param name="elapsedTime">The current total elapsed time</param>
+		/// <param name="duration">The total time for an animation to complete</param>
+		/// <returns>The normalized time as a <see cref="double"/></returns>
+		protected virtual double NegativeNormalizeTime(double elapsedTime, double duration)
+		{
+			return elapsedTime.Map(0, duration, 1, 0);
 		}
 
 		#endregion
