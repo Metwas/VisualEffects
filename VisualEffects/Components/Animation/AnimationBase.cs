@@ -10,10 +10,10 @@
 		/// <summary>
 		/// Constructs an animation object with the specified framerate
 		/// </summary>
-		/// <param name="frameRate">The internal timer elapsed delay</param>
 		/// <param name="easingFunction">The easing algorithm</param>
 		/// <param name="duration">The total duration to complete this animation</param>
-		public AnimationBase(uint frameRate, EasingFunction easingFunction, double duration)
+		/// <param name="frameRate">The internal timer elapsed delay</param>
+		public AnimationBase(EasingFunction easingFunction, double duration, uint? frameRate)
 			: base(frameRate, duration)
 		{
 			this.EasingFunction = easingFunction;

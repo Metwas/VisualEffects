@@ -37,15 +37,20 @@ namespace VisualEffects.Components.Animation
 		/// </summary>
 		/// <param name="frameRate">The internal timer elapsed delay</param>
 		/// <param name="duration">The total duration to complete this timeline</param>
-		public Timeline(uint frameRate, double duration)
+		public Timeline(uint? frameRate, double duration)
 		{
-			this.DesiredFrameRate = frameRate;
+			this.DesiredFrameRate = frameRate.HasValue ? frameRate.Value : Timeline.DefaultFrameRate;
 			this._animationTimer = new Timer(this.DesiredFrameRate);
 			this._stopwatch = new Stopwatch();
 			this._animationTimer.Elapsed += this.AnimationTimer_Elapsed;
 		}
 
 		#endregion
+
+		/// <summary>
+		/// A default framerate
+		/// </summary>
+		public static readonly uint DefaultFrameRate = 30;
 
 		/// <summary>
 		/// Used to handle timeline timer completion phase
@@ -80,7 +85,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// The desired framerate for the animation
 		/// </summary>
-		private uint _desiredFrameRate = 30;
+		private uint _desiredFrameRate = 0;
 
 		/// <summary>
 		/// Keeps a record of the internal timer whether its currently enabled (if true, the elapsed event will continue to be raised)

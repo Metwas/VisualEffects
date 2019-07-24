@@ -4,7 +4,7 @@
 	/// This uses a <see cref="System.Timers.Timer"/> to control the rate of change on a set of generic value types [<see cref="T"/>] represented as 'From' and 'To'
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public abstract class StructAnimationBase<T> : AnimationBase where T : struct
+	public class DoubleAnimation : StructAnimationBase<double>
 	{
 		#region Constructors
 
@@ -13,11 +13,9 @@
 		/// </summary>
 		/// <param name="easingFunction">The easing algorithm</param>
 		/// <param name="duration">The total duration to complete this animation</param>
-		public StructAnimationBase(T from, T to, EasingFunction easingFunction, double duration)
+		public DoubleAnimation(double from, double to, EasingFunction easingFunction, double duration)
 			: this(from, to, easingFunction, duration, null)
-		{
-			this.From = from;
-			this.To = to;
+		{			
 		}
 
 		/// <summary>
@@ -28,32 +26,13 @@
 		/// <param name="frameRate">The internal timer elapsed delay</param>
 		/// <param name="easingFunction">The easing algorithm</param>
 		/// <param name="duration">The total duration to complete this animation</param>
-		public StructAnimationBase(T from, T to, EasingFunction easingFunction, double duration, uint? frameRate)
-			: base(easingFunction, duration, frameRate)
+		public DoubleAnimation(double from, double to, EasingFunction easingFunction, double duration, uint? frameRate)
+			: base(from, to, easingFunction, duration, frameRate)
 		{
-			this.From = from;
-			this.To = to;
-
-			// attach event listener to the Timeline.Tick 
-			this.TimelineTick += this.Timeline_Tick;
 		}
 
 		#endregion
 
-		/// <summary>
-		/// The starting position for a given value type
-		/// </summary>
-		public T? From { get; set; }
-
-		/// <summary>
-		/// The end position for a given value type
-		/// </summary>
-		public T? To { get; set; }
-
-		/// <summary>
-		/// The current calculated positional based value of type <see cref="T"/>
-		/// </summary>
-		public T Current { get; protected set; }
 
 		#region Event Handlers
 
@@ -62,7 +41,10 @@
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
-		protected abstract void Timeline_Tick(object sender, TimelineTickArgs args);
+		protected override void Timeline_Tick(object sender, TimelineTickArgs args)
+		{
+			this.Current = this.EasingFunction.Apply(args.CurrentTime, this.Duration);
+		}
 
 		#endregion
 	}

@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Animation\AnimationBase.cs" />
+    <Compile Include="Components\Animation\DoubleAnimation.cs" />
     <Compile Include="Components\Animation\EaseAlgorithms\LinearEaseFunction.cs" />
     <Compile Include="Components\Animation\EaseMode.cs" />
     <Compile Include="Components\Animation\EasingFunction.cs" />
