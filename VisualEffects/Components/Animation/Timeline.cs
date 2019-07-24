@@ -90,7 +90,7 @@ namespace VisualEffects.Components.Animation
 			{
 				return this._animationTimer.Enabled;
 			}
-		};
+		}
 
 		/// <summary>
 		/// The desired framerate for the animation
@@ -135,7 +135,7 @@ namespace VisualEffects.Components.Animation
 			_currentTimeElapsed = startTime;
 			this._animationTimer.Start();
 			this._stopwatch = Stopwatch.StartNew();
-			this.OnTimelineBegin(new TimelineBeginArgs(this.DesiredFrameRate, this.Duration));
+			this.OnTimelineBegin(new TimelineBeginArgs(this.DesiredFrameRate, this.Duration, this._currentTimeElapsed));
 		}
 
 		/// <summary>
@@ -201,7 +201,16 @@ namespace VisualEffects.Components.Animation
 		/// <param name="e"></param>
 		protected void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)
 		{
-			this.OnTimelineTick(new TimelineTickArgs(this._stopwatch.Elapsed.TotalMilliseconds));
+			double totalElapsedTime = this._stopwatch.Elapsed.TotalMilliseconds + this._currentTimeElapsed;
+
+			if(totalElapsedTime >= this.Duration)
+			{
+				// complete timeline
+				this.End();
+			}
+
+			// add the current time elapsed with the stopwatch 
+			this.OnTimelineTick(new TimelineTickArgs(totalElapsedTime));
 		}
 
 		#endregion
