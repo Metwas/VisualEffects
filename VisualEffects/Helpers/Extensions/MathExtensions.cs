@@ -7,6 +7,26 @@ namespace VisualEffects.Helpers.Extensions
 	/// </summary>
 	public static class MathExtensions
 	{
+		/// <summary>
+		/// Converts provided degree value to radians
+		/// </summary>
+		/// <param name="degrees"></param>
+		/// <returns><see cref="double"/></returns>
+		public static double DEG_TO_RAD(double degrees)
+		{
+			return (Math.PI / 180) * degrees;
+		}
+
+		/// <summary>
+		/// Converts provided radian value to degrees
+		/// </summary>
+		/// <param name="degrees"></param>
+		/// <returns><see cref="double"/></returns>
+		public static double RAD_TO_DEG(double radians)
+		{
+			return (180 / Math.PI) * radians;
+		}
+
 		#region Map
 
 		/// <summary>

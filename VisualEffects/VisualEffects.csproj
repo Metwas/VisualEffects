@@ -43,6 +43,7 @@
     <Compile Include="Components\Animation\DoubleAnimation.cs" />
     <Compile Include="Components\Animation\EaseAlgorithms\LinearEaseFunction.cs" />
     <Compile Include="Components\Animation\EaseAlgorithms\PowerEaseFunction.cs" />
+    <Compile Include="Components\Animation\EaseAlgorithms\SineEaseFunction.cs" />
     <Compile Include="Components\Animation\EaseMode.cs" />
     <Compile Include="Components\Animation\EasingFunction.cs" />
     <Compile Include="Components\Animation\Storyboard.cs" />

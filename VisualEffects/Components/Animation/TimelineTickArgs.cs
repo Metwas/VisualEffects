@@ -10,9 +10,10 @@ namespace VisualEffects.Components.Animation
 	{
 		#region Constructors
 
-		public TimelineTickArgs(double currentTime)
+		public TimelineTickArgs(double currentTime, double lastElapsed)
 		{
 			this.CurrentTime = currentTime;
+			this.LastElapsed = lastElapsed;
 		}
 
 		#endregion
@@ -21,5 +22,10 @@ namespace VisualEffects.Components.Animation
 		/// The current timeline position
 		/// </summary>
 		public double CurrentTime { get; }
+
+		/// <summary>
+		/// Gets the timestamp from the last elapsed measurement 
+		/// </summary>
+		public double LastElapsed { get; }
 	}
 }

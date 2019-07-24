@@ -1,4 +1,6 @@
-﻿namespace VisualEffects.Components.Animation
+﻿using System;
+
+namespace VisualEffects.Components.Animation
 {
 	/// <summary>
 	/// This uses a <see cref="System.Timers.Timer"/> to control the rate of change on a set of generic value types [<see cref="T"/>] represented as 'From' and 'To'
@@ -36,6 +38,7 @@
 			this.Precision = 4;
 			// attach event listener to the Timeline.Tick 
 			this.TimelineTick += this.Timeline_Tick;
+			this.TimelineComplete += this.Timeline_Completion;
 		}
 
 		#endregion
@@ -68,6 +71,20 @@
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
 		protected abstract void Timeline_Tick(object sender, TimelineTickArgs args);
+
+		/// <summary>
+		/// Handles the timeline timer completion, finalizing any animation values
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="args"></param>
+		protected virtual void Timeline_Completion(object sender, EventArgs args)
+		{
+			// after animation completion we want to ensure the current value has been set to the final 'To' value
+			if (this.To.HasValue)
+			{
+				this.Current = this.To.Value;
+			}
+		}
 
 		#endregion
 	}

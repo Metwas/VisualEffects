@@ -93,6 +93,16 @@ namespace VisualEffects.Components.Animation
 		private Stopwatch _stopwatch = null;
 
 		/// <summary>
+		/// Used to keep track of the last <see cref="Timeline.TimelineTick"/> event occurred
+		/// </summary>
+		private double _lastTickStamp = 0;
+
+		/// <summary>
+		/// Keeps track of the total running time for this timeline
+		/// </summary>
+		private double _totalElapsedTime = 0;
+
+		/// <summary>
 		/// Keeps a reference for the current timeline position
 		/// </summary>
 		private double _currentTimeElapsed = 0;
@@ -156,6 +166,7 @@ namespace VisualEffects.Components.Animation
 			this.End();
 			_currentTimeElapsed = startTime;
 			this._animationTimer.Start();
+			this._totalElapsedTime = 0;
 			this._stopwatch = Stopwatch.StartNew();
 			this.OnTimelineBegin(new TimelineBeginArgs(this.DesiredFrameRate, this.Duration.TotalMilliseconds, this._currentTimeElapsed));
 		}
@@ -168,8 +179,8 @@ namespace VisualEffects.Components.Animation
 			if (this.IsRunning)
 			{
 				this._animationTimer.Stop();
-				this._stopwatch.Stop();
 				this._stopwatch.Reset();
+				this._lastTickStamp = 0;
 				this.OnTimelineComplete(null);
 			}
 		}
@@ -217,7 +228,6 @@ namespace VisualEffects.Components.Animation
 
 		#region Event Handlers
 
-
 		/// <summary>
 		/// Handles each elapsed timer event, updating the base animation value
 		/// </summary>
@@ -225,16 +235,21 @@ namespace VisualEffects.Components.Animation
 		/// <param name="e"></param>
 		protected void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)
 		{
-			double totalElapsedTime = this._stopwatch.Elapsed.TotalMilliseconds + this._currentTimeElapsed;
+			double _timestamp = this._stopwatch.Elapsed.TotalMilliseconds;
+			this._totalElapsedTime += _timestamp + this._currentTimeElapsed;
+			this._lastTickStamp = _timestamp;
 
-			if (totalElapsedTime >= this.Duration.TotalMilliseconds)
+			if (_totalElapsedTime >= this.Duration.TotalMilliseconds)
 			{
 				// complete timeline
 				this.End();
 			}
 
+			this._stopwatch.Reset();
+			this._stopwatch.Start();
+
 			// add the current time elapsed with the stopwatch 
-			this.OnTimelineTick(new TimelineTickArgs(totalElapsedTime));
+			this.OnTimelineTick(new TimelineTickArgs(this._totalElapsedTime, this._lastTickStamp));
 		}
 
 		#endregion

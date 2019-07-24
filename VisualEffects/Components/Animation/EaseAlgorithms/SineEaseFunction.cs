@@ -1,58 +1,56 @@
 ﻿using System;
-using VisualEffects.Helpers.Extensions;
 
 namespace VisualEffects.Components.Animation
 {
 	/// <summary>
-	/// Provides an easing interpolation by raising a current timestamp value to a provided Power value
+	/// Provides sine ease function
 	/// </summary>
-	public class PowerEaseFunction : EasingFunction
+	/// <remarks>
+	/// https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.animation.sineease?view=netframework-4.8
+	/// </remarks>
+	public class SineEaseFunction : EasingFunction
 	{
 		#region Constructors
 
 		/// <summary>
 		/// Constructs the easing function with a specified <see cref="EaseMode"/>
 		/// </summary>
-		/// <param name="power">The mathematical power value</param>
 		/// <param name="mode">The interpolation modification type for this easing function</param>
-		public PowerEaseFunction(EaseMode mode)
-			: this(2, mode)
+		public SineEaseFunction(EaseMode mode)
+			: this(1, mode)
 		{
 		}
 
 		/// <summary>
 		/// Constructs the easing function with a specified <see cref="EaseMode"/>
 		/// </summary>
-		/// <param name="power">The mathematical power value</param>
+		/// <param name="angle">The angle in degrees</param>
 		/// <param name="mode">The interpolation modification type for this easing function</param>
-		public PowerEaseFunction(int power, EaseMode mode)
+		public SineEaseFunction(int angle, EaseMode mode)
 			: base(mode)
 		{
-			this.Power = power;
+			this.Angle = angle;
 		}
 
 		#endregion
 
 		/// <summary>
-		/// The power property changes how quickly the rate of change can occur
+		/// The angle of which the sine function will calculate in degrees
 		/// </summary>
-		public int Power { get; set; }
+		public double Angle { get; set; }
 
 		#region Functions
 
 		/// <summary>
-		/// Performs a power interpolation algorithm based from the provided <see cref="double"/> elapsed time
+		/// Performs a sine interpolation algorithm following the formulae ' f(t) = 1 - [sin(1 - t) * PI/2] '
 		/// </summary>
 		/// <param name="normalizedElapsedTime"></param>
 		/// <param name="duration">The total time for an animation to complete</param>
 		/// <returns>The current animation progress for a given type <see cref="T"/></returns>
 		protected override double EaseInCore(double normalizedElapsedTime, double duration)
 		{
-			/*
-				f(t) = t^P  where 'p' equals to the Power property
-			 */
-
-			return Math.Pow(normalizedElapsedTime, this.Power);
+			double change = 1 - normalizedElapsedTime;
+			return 1 - (Math.Sin(change) * (Math.PI / 2));
 		}
 
 		#endregion

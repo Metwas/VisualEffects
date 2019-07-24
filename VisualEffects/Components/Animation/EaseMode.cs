@@ -6,18 +6,23 @@
 	public enum EaseMode
 	{
 		/// <summary>
+		/// Consistant rate of change
+		/// </summary>
+		Linear = 0,
+
+		/// <summary>
 		/// Interpolation follows the mathematical formula associated with the easing function.
 		/// </summary>
-		EaseIn = 0,
+		EaseIn = 1,
 
 		/// <summary>
 		/// Interpolation follows 100% interpolation minus the output of the formula associated with the easing function.
 		/// </summary>
-		EaseOut = 1,
+		EaseOut = 2,
 
 		/// <summary>
 		/// Interpolation uses EaseIn for the first half of the animation and EaseOut for the second half.
 		/// </summary>
-		EaseInOut = 2
+		EaseInOut = 3
 	}
 }

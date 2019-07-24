@@ -36,6 +36,8 @@
 			this.StateLabel = new System.Windows.Forms.Label();
 			this.DoubleAnimateObject = new System.Windows.Forms.Button();
 			this.AnimationStatusLabel = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.VelocityLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -54,7 +56,7 @@
 			this.DoubleValueLabel.AutoSize = true;
 			this.DoubleValueLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.DoubleValueLabel.ForeColor = System.Drawing.Color.White;
-			this.DoubleValueLabel.Location = new System.Drawing.Point(62, 57);
+			this.DoubleValueLabel.Location = new System.Drawing.Point(87, 57);
 			this.DoubleValueLabel.Name = "DoubleValueLabel";
 			this.DoubleValueLabel.Size = new System.Drawing.Size(13, 13);
 			this.DoubleValueLabel.TabIndex = 1;
@@ -86,7 +88,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.White;
-			this.label2.Location = new System.Drawing.Point(13, 82);
+			this.label2.Location = new System.Drawing.Point(13, 102);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(43, 13);
 			this.label2.TabIndex = 4;
@@ -97,7 +99,7 @@
 			this.StateLabel.AutoSize = true;
 			this.StateLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.StateLabel.ForeColor = System.Drawing.Color.Firebrick;
-			this.StateLabel.Location = new System.Drawing.Point(62, 82);
+			this.StateLabel.Location = new System.Drawing.Point(62, 102);
 			this.StateLabel.Name = "StateLabel";
 			this.StateLabel.Size = new System.Drawing.Size(73, 13);
 			this.StateLabel.TabIndex = 5;
@@ -124,12 +126,36 @@
 			this.AnimationStatusLabel.TabIndex = 7;
 			this.AnimationStatusLabel.Text = "Move box";
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.ForeColor = System.Drawing.Color.White;
+			this.label4.Location = new System.Drawing.Point(13, 79);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(61, 13);
+			this.label4.TabIndex = 9;
+			this.label4.Text = "Velocity:";
+			// 
+			// VelocityLabel
+			// 
+			this.VelocityLabel.AutoSize = true;
+			this.VelocityLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.VelocityLabel.ForeColor = System.Drawing.Color.White;
+			this.VelocityLabel.Location = new System.Drawing.Point(87, 79);
+			this.VelocityLabel.Name = "VelocityLabel";
+			this.VelocityLabel.Size = new System.Drawing.Size(13, 13);
+			this.VelocityLabel.TabIndex = 8;
+			this.VelocityLabel.Text = "0";
+			// 
 			// AnimationTesterWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.CadetBlue;
+			this.BackColor = System.Drawing.Color.SlateGray;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.VelocityLabel);
 			this.Controls.Add(this.AnimationStatusLabel);
 			this.Controls.Add(this.DoubleAnimateObject);
 			this.Controls.Add(this.StateLabel);
@@ -143,6 +169,7 @@
 			this.Name = "AnimationTesterWindow";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Animation Tester";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AnimationTesterWindow_FormClosing);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -158,6 +185,8 @@
 		private System.Windows.Forms.Label StateLabel;
 		private System.Windows.Forms.Button DoubleAnimateObject;
 		private System.Windows.Forms.Label AnimationStatusLabel;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label VelocityLabel;
 	}
 }
 
