@@ -83,12 +83,12 @@ namespace VisualEffects.Components.Animation
 					return this.EaseInCore(normalizedTime, duration);
 
 				case EaseMode.EaseOut:
-					// EaseOut is the same as EaseIn, except time is reversed & the result is flipped. 
+					// EaseOut is the same as EaseIn, except time is reversed and the result is flipped. 
 					return 1.0 - this.EaseInCore(1.0 - normalizedTime, duration); ;
 
 				case EaseMode.EaseInOut:
 				default:
-					// EaseInOut is a combination of EaseIn & EaseOut fit to the 0-1, 0-1 range.
+					// EaseInOut is a combination of EaseIn and EaseOut fit to the 0-1, 0-1 range.
 					return (normalizedTime < 0.5) ?
 							   this.EaseInCore(normalizedTime * 2.0, duration) * 0.5 :
 						(1.0 - this.EaseInCore((1.0 - normalizedTime) * 2.0, duration)) * 0.5 + 0.5;
