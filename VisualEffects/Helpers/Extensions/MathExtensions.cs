@@ -66,7 +66,7 @@ namespace VisualEffects.Helpers.Extensions
 		/// <returns>A <see cref="decimal"/> value which will be less or equal to the <see cref="maximum"/> parameter</returns>
 		public static decimal Clamp(this decimal value, decimal minimum, decimal maximum)
 		{
-			return Math.Max(minimum, Math.Min(value, maximum));
+			return Math.Max(minimum, Math.Min(maximum, value));
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace VisualEffects.Helpers.Extensions
 		/// <returns>A <see cref="double"/> value which will be less or equal to the <see cref="maximum"/> parameter</returns>
 		public static double Clamp(this double value, double minimum, double maximum)
 		{
-			return Math.Max(minimum, Math.Min(value, maximum));
+			return Math.Max(minimum, Math.Min(maximum, value));
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace VisualEffects.Helpers.Extensions
 		/// <returns>A <see cref="int"/> value which will be less or equal to the <see cref="maximum"/> parameter</returns>
 		public static int Clamp(this int value, int minimum, int maximum)
 		{
-			return Math.Max(minimum, Math.Min(value, maximum));
+			return Math.Max(minimum, Math.Min(maximum, value));
 		}
 
 		#endregion

@@ -51,7 +51,6 @@ namespace VisualEffects.Components.Animation
 			/*
 				f(t) = t^P  where 'p' equals to the Power property
 			 */
-
 			return Math.Pow(normalizedElapsedTime, this.Power);
 		}
 

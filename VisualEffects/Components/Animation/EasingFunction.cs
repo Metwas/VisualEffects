@@ -24,7 +24,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// Linear ease algorithm
 		/// </summary>
-		public static EasingFunction LinearEase = new LinearEaseFunction(EaseMode.EaseOut);
+		public static EasingFunction LinearEase = new LinearEaseFunction();
 
 		/// <summary>
 		/// Power ease algorithm
@@ -42,7 +42,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// Used to keep track of the original animation time
 		/// </summary>
-		protected double _elapsedTime = 0;
+		protected double ElapsedTime = 0;
 
 		#region Functions
 
@@ -58,42 +58,41 @@ namespace VisualEffects.Components.Animation
 		/// The main function which performs the easing algorithm depending on which <see cref="EaseMode"/> is selected.
 		/// </summary>
 		/// <param name="elapsedTime">The current elapsedTime which gets passed to the easing formulae</param>
-		/// <param name="duration">The total time for an animation to complete in milliseconds</param>
+		/// <param name="duration">The total time for an animation to complete as a <see cref="TimeSpan"/></param>
 		/// <returns>The current animation progress for a given type as a <see cref="double"/></returns>
-		public virtual double Apply(double elapsedTime, double duration)
+		public virtual double Ease(double elapsedTime, TimeSpan duration)
 		{
-			this._elapsedTime = elapsedTime;
-			double normalizedTime = this.NormalizeTime(elapsedTime, duration);
-			//double negativeNormalizedTime = this.NegativeNormalizeTime(elapsedTime, duration);
-
-			switch (this.Mode)
-			{
-				case EaseMode.Linear:
-					return this.EaseInCore(normalizedTime, duration);
-
-				case EaseMode.EaseIn:
-					return this.EaseIn(normalizedTime, duration);
-
-				case EaseMode.EaseOut:
-					return this.EaseOut(normalizedTime, duration);
-
-				case EaseMode.EaseInOut:
-					return this.PerformBezierEase(normalizedTime, duration);
-
-				default:
-					return this.EaseOut(normalizedTime, duration);
-			}
+			return this.Ease(elapsedTime, duration.TotalMilliseconds);
 		}
 
 		/// <summary>
 		/// The main function which performs the easing algorithm depending on which <see cref="EaseMode"/> is selected.
 		/// </summary>
 		/// <param name="elapsedTime">The current elapsedTime which gets passed to the easing formulae</param>
-		/// <param name="duration">The total time for an animation to complete as a <see cref="TimeSpan"/></param>
+		/// <param name="duration">The total time for an animation to complete in milliseconds</param>
 		/// <returns>The current animation progress for a given type as a <see cref="double"/></returns>
-		public virtual double Apply(double elapsedTime, TimeSpan duration)
+		public double Ease(double elapsedTime, double duration)
 		{
-			return this.Apply(elapsedTime, duration.TotalMilliseconds);
+			this.ElapsedTime = elapsedTime;
+			double normalizedTime = this.NormalizeTime(elapsedTime, duration);
+			//double negativeNormalizedTime = this.NegativeNormalizeTime(elapsedTime, duration);
+
+			switch (this.Mode)
+			{
+				case EaseMode.EaseIn:
+					return this.EaseInCore(normalizedTime, duration);
+
+				case EaseMode.EaseOut:
+					// EaseOut is the same as EaseIn, except time is reversed & the result is flipped. 
+					return 1.0 - this.EaseInCore(1.0 - normalizedTime, duration); ;
+
+				case EaseMode.EaseInOut:
+				default:
+					// EaseInOut is a combination of EaseIn & EaseOut fit to the 0-1, 0-1 range.
+					return (normalizedTime < 0.5) ?
+							   this.EaseInCore(normalizedTime * 2.0, duration) * 0.5 :
+						(1.0 - this.EaseInCore((1.0 - normalizedTime) * 2.0, duration)) * 0.5 + 0.5;
+			}
 		}
 
 		/// <summary>
@@ -104,7 +103,7 @@ namespace VisualEffects.Components.Animation
 		/// <returns>The current animation progress for a given type as a <see cref="double"/></returns>
 		protected virtual double PerformBezierEase(double normalizedTime, double duration)
 		{
-			return Math.Pow(normalizedTime, 2) * (1/normalizedTime);
+			return Math.Pow(normalizedTime, 2) * (1 / normalizedTime);
 		}
 
 		/// <summary>
@@ -115,7 +114,7 @@ namespace VisualEffects.Components.Animation
 		/// <returns>The normalized time as a <see cref="double"/></returns>
 		protected virtual double NormalizeTime(double elapsedTime, double duration)
 		{
-			return elapsedTime.Map(0, duration, -1, 1);
+			return elapsedTime.Map(0, duration, 0.0, 1.0);
 		}
 
 		/// <summary>
@@ -126,7 +125,7 @@ namespace VisualEffects.Components.Animation
 		/// <returns>The normalized time as a <see cref="double"/></returns>
 		protected virtual double NegativeNormalizeTime(double elapsedTime, double duration)
 		{
-			return elapsedTime.Map(0, duration, 1, -1);
+			return elapsedTime.Map(0, duration, 1.0, 0.0);
 		}
 
 		/// <summary>
@@ -136,17 +135,17 @@ namespace VisualEffects.Components.Animation
 		/// <returns>A <see cref="double"/> result</returns>
 		protected double EaseOut(double normalizedTime, double duration)
 		{
-			return this.EaseInCore(normalizedTime, duration) + (normalizedTime * (1 - normalizedTime));
+			return this.EaseInCore(normalizedTime, duration) * (2 - normalizedTime);
 		}
 
 		/// <summary>
-		/// Performs the ease out algorithm by adding (1 - t) * t to the EaseIn function result
+		/// Performs the ease in function increasing the acceleration rate over time
 		/// </summary>
 		/// <param name="normalizedTime"></param>
 		/// <returns>A <see cref="double"/> result</returns>
 		protected double EaseIn(double normalizedTime, double duration)
 		{
-			return this.EaseInCore(normalizedTime, duration);
+			return this.EaseInCore(normalizedTime, duration) * normalizedTime;
 		}
 
 		#endregion

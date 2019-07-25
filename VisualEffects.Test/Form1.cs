@@ -13,7 +13,7 @@ namespace VisualEffects.Test
 		public AnimationTesterWindow()
 		{
 			InitializeComponent();
-			this.doubleAnimation = new DoubleAnimation(0.0, 255.0, new LinearEaseFunction(EaseMode.EaseOut), 2200, 60);
+			this.doubleAnimation = new DoubleAnimation(0.0, 255.0, new CicleEaseFunction(EaseMode.EaseOut), 2200, 60);
 
 			this.doubleAnimation.TimelineComplete += (o, a) =>
 			{
@@ -43,10 +43,9 @@ namespace VisualEffects.Test
 
 					double _currentValue = this.doubleAnimation.Current;
 
-					this.AnimationStatusLabel.Text = "Moving box to the right";
 					this.DoubleAnimateObject.Location = new Point((int)_currentValue, this.DoubleAnimateObject.Location.Y);
-					this.VelocityLabel.Text = (this.doubleAnimation.Duration.TotalMilliseconds - this.doubleAnimation.Current).ToString();
-					this.Opacity = _currentValue.Map(this.doubleAnimation.From.Value, this.doubleAnimation.To.Value, 0, 1);
+					this.TimeLabel.Text = a.CurrentTime.ToString() + " ms";
+					//this.Opacity = _currentValue.Map(this.doubleAnimation.From.Value, this.doubleAnimation.To.Value, 0, 1);
 					//this.Location = new Point(this.Location.X, (int)_currentValue);
 					this.DoubleValueLabel.Text = _currentValue.ToString();
 				});

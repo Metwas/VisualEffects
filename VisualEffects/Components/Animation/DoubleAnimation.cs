@@ -44,7 +44,7 @@ namespace VisualEffects.Components.Animation
 		/// <param name="args"></param>
 		protected override void Timeline_Tick(object sender, TimelineTickArgs args)
 		{
-			this.Current = System.Math.Round((this.To.Value - this.From.Value) * this.EasingFunction.Apply(args.CurrentTime, this.Duration), this.Precision).Clamp(this.From.Value, this.To.Value);
+			this.Current = System.Math.Round(System.Math.Abs((this.To.Value - this.From.Value) * this.EasingFunction.Ease(args.CurrentTime, this.Duration)), this.Precision).Clamp(this.From.Value, this.To.Value);
 		}
 
 		#endregion

@@ -6,11 +6,6 @@
 	public enum EaseMode
 	{
 		/// <summary>
-		/// Consistant rate of change
-		/// </summary>
-		Linear = 0,
-
-		/// <summary>
 		/// Interpolation follows the mathematical formula associated with the easing function.
 		/// </summary>
 		EaseIn = 1,

@@ -35,9 +35,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.StateLabel = new System.Windows.Forms.Label();
 			this.DoubleAnimateObject = new System.Windows.Forms.Button();
-			this.AnimationStatusLabel = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.VelocityLabel = new System.Windows.Forms.Label();
+			this.TimeLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -99,7 +98,7 @@
 			this.StateLabel.AutoSize = true;
 			this.StateLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.StateLabel.ForeColor = System.Drawing.Color.Firebrick;
-			this.StateLabel.Location = new System.Drawing.Point(62, 102);
+			this.StateLabel.Location = new System.Drawing.Point(87, 102);
 			this.StateLabel.Name = "StateLabel";
 			this.StateLabel.Size = new System.Drawing.Size(73, 13);
 			this.StateLabel.TabIndex = 5;
@@ -115,17 +114,6 @@
 			this.DoubleAnimateObject.Text = "┴";
 			this.DoubleAnimateObject.UseVisualStyleBackColor = false;
 			// 
-			// AnimationStatusLabel
-			// 
-			this.AnimationStatusLabel.AutoSize = true;
-			this.AnimationStatusLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.AnimationStatusLabel.ForeColor = System.Drawing.Color.White;
-			this.AnimationStatusLabel.Location = new System.Drawing.Point(12, 125);
-			this.AnimationStatusLabel.Name = "AnimationStatusLabel";
-			this.AnimationStatusLabel.Size = new System.Drawing.Size(55, 13);
-			this.AnimationStatusLabel.TabIndex = 7;
-			this.AnimationStatusLabel.Text = "Move box";
-			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
@@ -133,20 +121,20 @@
 			this.label4.ForeColor = System.Drawing.Color.White;
 			this.label4.Location = new System.Drawing.Point(13, 79);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(61, 13);
+			this.label4.Size = new System.Drawing.Size(37, 13);
 			this.label4.TabIndex = 9;
-			this.label4.Text = "Velocity:";
+			this.label4.Text = "Time:";
 			// 
-			// VelocityLabel
+			// TimeLabel
 			// 
-			this.VelocityLabel.AutoSize = true;
-			this.VelocityLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.VelocityLabel.ForeColor = System.Drawing.Color.White;
-			this.VelocityLabel.Location = new System.Drawing.Point(87, 79);
-			this.VelocityLabel.Name = "VelocityLabel";
-			this.VelocityLabel.Size = new System.Drawing.Size(13, 13);
-			this.VelocityLabel.TabIndex = 8;
-			this.VelocityLabel.Text = "0";
+			this.TimeLabel.AutoSize = true;
+			this.TimeLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.TimeLabel.ForeColor = System.Drawing.Color.White;
+			this.TimeLabel.Location = new System.Drawing.Point(87, 79);
+			this.TimeLabel.Name = "TimeLabel";
+			this.TimeLabel.Size = new System.Drawing.Size(13, 13);
+			this.TimeLabel.TabIndex = 8;
+			this.TimeLabel.Text = "0";
 			// 
 			// AnimationTesterWindow
 			// 
@@ -155,8 +143,7 @@
 			this.BackColor = System.Drawing.Color.SlateGray;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.VelocityLabel);
-			this.Controls.Add(this.AnimationStatusLabel);
+			this.Controls.Add(this.TimeLabel);
 			this.Controls.Add(this.DoubleAnimateObject);
 			this.Controls.Add(this.StateLabel);
 			this.Controls.Add(this.label2);
@@ -184,9 +171,8 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label StateLabel;
 		private System.Windows.Forms.Button DoubleAnimateObject;
-		private System.Windows.Forms.Label AnimationStatusLabel;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label VelocityLabel;
+		private System.Windows.Forms.Label TimeLabel;
 	}
 }
 

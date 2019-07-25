@@ -5,11 +5,10 @@
 		#region Constructors
 
 		/// <summary>
-		/// Constructs the easing function with a specified <see cref="EaseMode"/>
+		/// Constructs a linear travel rate
 		/// </summary>
-		/// <param name="mode">The interpolation modification type for this easing function</param>
-		public LinearEaseFunction(EaseMode mode)
-			: base(mode)
+		public LinearEaseFunction()
+			: base(EaseMode.EaseOut)
 		{
 		}
 
