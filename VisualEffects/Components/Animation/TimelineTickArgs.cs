@@ -10,7 +10,7 @@ namespace VisualEffects.Components.Animation
 	{
 		#region Constructors
 
-		public TimelineTickArgs(double currentTime, double lastElapsed)
+		public TimelineTickArgs(double currentTime,double lastElapsed)
 		{
 			this.CurrentTime = currentTime;
 			this.LastElapsed = lastElapsed;

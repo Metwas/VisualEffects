@@ -65,7 +65,7 @@ namespace VisualEffects.Components.Animation
 		/// <summary>
 		/// A default framerate
 		/// </summary>
-		public static readonly uint DefaultFrameRate = 30;
+		public static readonly uint DefaultFrameRate = 60;
 
 		/// <summary>
 		/// Used to handle timeline timer completion phase
@@ -172,7 +172,7 @@ namespace VisualEffects.Components.Animation
 		}
 
 		/// <summary>
-		/// Terminates the timer and completes the animation
+		/// Terminates the timer and completes the timeline
 		/// </summary>
 		public void End()
 		{

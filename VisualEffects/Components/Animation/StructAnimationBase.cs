@@ -79,6 +79,7 @@ namespace VisualEffects.Components.Animation
 		/// <param name="args"></param>
 		protected virtual void Timeline_Completion(object sender, EventArgs args)
 		{
+			this.TimelineTick -= this.Timeline_Tick;
 			// after animation completion we want to ensure the current value has been set to the final 'To' value
 			if (this.To.HasValue)
 			{

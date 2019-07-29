@@ -6,7 +6,7 @@ namespace VisualEffects.Components.Animation
 	/// This uses a <see cref="System.Timers.Timer"/> to control the rate of change on a set of generic value types [<see cref="T"/>] represented as 'From' and 'To'
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class DoubleAnimation : StructAnimationBase<double>
+	public sealed class DoubleAnimation : StructAnimationBase<double>
 	{
 		#region Constructors
 

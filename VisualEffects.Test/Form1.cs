@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using VisualEffects.Components.Animation;
-using VisualEffects.Helpers.Extensions;
 
 namespace VisualEffects.Test
 {
@@ -13,7 +12,13 @@ namespace VisualEffects.Test
 		public AnimationTesterWindow()
 		{
 			InitializeComponent();
-			this.doubleAnimation = new DoubleAnimation(0.0, 255.0, new PowerEaseFunction(5,EaseMode.EaseOut), 2200, 60);
+
+			Storyboard _storyBoard = new Storyboard();
+
+			//_storyBoard.Add(new DoubleAnimation(0.0, 255.0, new CubicEaseFunction(EaseMode.EaseOut), 1100, 120));
+			//_storyBoard.Add(new DoubleAnimation(0.0, 255.0, new CubicEaseFunction(EaseMode.EaseOut), 1100, 120));
+
+			this.doubleAnimation = new DoubleAnimation(0.0, 255.0, new CubicEaseFunction(EaseMode.EaseOut), 1100, 120);
 
 			this.doubleAnimation.TimelineComplete += (o, a) =>
 			{
