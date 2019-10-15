@@ -1,0 +1,13 @@
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\bin\Debug\VisualEffects.Test.exe.config
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\bin\Debug\VisualEffects.Test.exe
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\bin\Debug\VisualEffects.Test.pdb
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\bin\Debug\VisualEffects.dll
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\bin\Debug\VisualEffects.pdb
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.Properties.Resources.resources
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.csproj.GenerateResource.cache
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.csproj.CoreCompileInputs.cache
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.csproj.CopyComplete
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.exe
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.pdb
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.AnimationTesterWindow.resources
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.Test\obj\Debug\VisualEffects.Test.csprojAssemblyReference.cache

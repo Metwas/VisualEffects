@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VisualEffects.WinForms</RootNamespace>
     <AssemblyName>VisualEffects.WinForms</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,9 +44,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ControlPropertyAnimator.cs" />
-    <Compile Include="Controls\ScaleMode.cs" />
+    <Compile Include="Components\Models\DialogButtonStyles.cs" />
+    <Compile Include="Components\Models\PromptMessageButtons.cs" />
+    <Compile Include="Components\Models\PromptModel.cs" />
+    <Compile Include="Controls\DialogControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DialogResultArgs.cs" />
+    <Compile Include="Controls\TaskLoaderWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\TaskLoaderWindow.Designer.cs">
+      <DependentUpon>TaskLoaderWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PromptAnimatedWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\PromptAnimatedWindow.Designer.cs">
+      <DependentUpon>PromptAnimatedWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ControlPropertyAnimator.cs" />
+    <Compile Include="Components\ScaleMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -51,6 +78,18 @@
       <Project>{29D8E83C-4D96-411C-B19A-63185925FE00}</Project>
       <Name>VisualEffects</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\TaskLoaderWindow.resx">
+      <DependentUpon>TaskLoaderWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PromptAnimatedWindow.resx">
+      <DependentUpon>PromptAnimatedWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

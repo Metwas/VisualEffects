@@ -1,0 +1,14 @@
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\bin\Release\VisualEffects.WinForms.dll
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\bin\Release\VisualEffects.WinForms.pdb
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\bin\Release\VisualEffects.dll
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\bin\Release\VisualEffects.pdb
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.csprojAssemblyReference.cache
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.Controls.TaskLoaderWindow.resources
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.Controls.OverlayWindow.resources
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.Controls.PromptAnimatedWindow.resources
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.Properties.Resources.resources
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.csproj.GenerateResource.cache
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.csproj.CoreCompileInputs.cache
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.csproj.CopyComplete
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.dll
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects.WinForms\obj\Release\VisualEffects.WinForms.pdb

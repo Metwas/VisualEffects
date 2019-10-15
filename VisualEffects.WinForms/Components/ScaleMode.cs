@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace VisualEffects.WinForms.Controls
+namespace VisualEffects.WinForms
 {
 	public sealed class ScaleMode
 	{

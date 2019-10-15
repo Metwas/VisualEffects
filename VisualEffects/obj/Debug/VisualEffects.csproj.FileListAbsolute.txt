@@ -1,0 +1,6 @@
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects\bin\Debug\VisualEffects.dll
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects\bin\Debug\VisualEffects.pdb
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects\obj\Debug\VisualEffects.csproj.CoreCompileInputs.cache
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects\obj\Debug\VisualEffects.dll
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects\obj\Debug\VisualEffects.pdb
+C:\Users\matthew.mcphail\source\repos\VisualEffects\VisualEffects\obj\Debug\VisualEffects.csprojAssemblyReference.cache

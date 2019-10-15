@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using VisualEffects.Components.Animation;
 
-namespace VisualEffects.WinForms.Controls
+namespace VisualEffects.WinForms
 {
 	public static class ControlPropertyAnimator
 	{

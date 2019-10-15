@@ -27,5 +27,10 @@ namespace VisualEffects.Components.Animation
 		/// Gets the timestamp from the last elapsed measurement 
 		/// </summary>
 		public double LastElapsed { get; }
+
+		/// <summary>
+		/// The current interpolated value within the animation
+		/// </summary>
+		public double CurrentValue { get; set; }
 	}
 }
